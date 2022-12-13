@@ -92,18 +92,18 @@ int main(int argc, char* argv[]) {
             fprintf(output, "%s", "Звонок пошёл!\n");
         }
     }
-    // for (int i = 0; i < N; ++i) {
-    //     if (pthread_join(threads[i], NULL) != 0) {  // wait until all our threads end
-    //         return i + 5;
-    //     } else {
-    //         printf("Текущий болтун наговорился и отложил телефон.\n");
-    //         fprintf(output, "%s", "Текущий болтун наговорился и отложил телефон.\n");
-    //     }
-    // }
+    for (int i = 0; i < N; ++i) {
+        if (pthread_join(threads[i], NULL) != 0) {  // wait until all our threads end
+            return i + 5;
+        } else {
+            printf("Текущий болтун наговорился и отложил телефон.\n");
+            fprintf(output, "%s", "Текущий болтун наговорился и отложил телефон.\n");
+        }
+    }
     
-    // for (int i = 0; i < N; ++i) {
-    //     pthread_mutex_destroy(mutexes + i);  // чистим программу от мьютексов
-    // }
+    for (int i = 0; i < N; ++i) {
+        pthread_mutex_destroy(mutexes + i);  // чистим программу от мьютексов
+    }
     fclose(output);
     return 0;
 }
